@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 import joblib
-from sklearn.feature_extraction.text import CountVectorizer
+
 
 TOKEN_API = "7059449160:AAHVxRTEd7HuCAjajZ6j9nGloxvvmdb_rFM"
 
@@ -27,10 +27,6 @@ async def handle_text(message: types.Message):
     reply_text = f"Тема сообщения: {label}"
     await message.reply(reply_text)
 
-
-# @dp.message()
-# async def echo(message: types.Message):
-#     await message.answer(text=message.text)
 
 
 if __name__ == '__main__':
