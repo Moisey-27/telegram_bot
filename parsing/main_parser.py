@@ -33,11 +33,13 @@ all_thems = {
     '11': 'Южноамериканский бунт'
 }
 
+file_name = 'Все по 200.csv'
+
 start_time = time.time()
 
 
 def get_data():
-    with open('Все по 200.csv', 'w', newline='') as file:
+    with open(file_name, 'w', newline='') as file:
         writer = csv.writer(file)
 
         writer.writerow(
@@ -51,7 +53,7 @@ def get_data():
 
     for number_of_category, category_name in all_thems.items():
         page = 1
-        WAP_URL = f'https://www.warandpeace.ru/ru/archive/search/_/text_header=&author=&topic={number_of_category}&date_st=01.05.2006&sselect=0&date_en=23.4.2024&archive_sort=5&page={page}/'
+        wap_url = f'https://www.warandpeace.ru/ru/archive/search/_/text_header=&author=&topic={number_of_category}&date_st=01.05.2006&sselect=0&date_en=23.4.2024&archive_sort=5&page={page}/'
 
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -59,7 +61,7 @@ def get_data():
         }
 
         #  Заходим на требуемый сайт
-        response = requests.get(WAP_URL, headers)
+        response = requests.get(wap_url, headers)
         # time.sleep(5)
 
         #  Парсим его в виде текста
@@ -79,7 +81,7 @@ def get_data():
         for page in range(1, 201):
 
             #  URL сайта
-            WAP_URL = f'https://www.warandpeace.ru/ru/archive/search/_/page=1/?text_header=&author=&topic={number_of_category}&date_st=01.05.2006&sselect=0&date_en=23.4.2024&archive_sort=5&page={page}/'
+            wap_url = f'https://www.warandpeace.ru/ru/archive/search/_/page=1/?text_header=&author=&topic={number_of_category}&date_st=01.05.2006&sselect=0&date_en=23.4.2024&archive_sort=5&page={page}/'
 
             headers = {
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -87,7 +89,7 @@ def get_data():
             }
 
             #  Заходим на требуемую страницу
-            response = requests.get(WAP_URL, headers)
+            response = requests.get(wap_url, headers)
 
             #  Парсим ее
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -126,7 +128,7 @@ def get_data():
                     }
                 )
 
-                with open('Все по 200.csv', 'a', newline='') as file:
+                with open(file_name, 'a', newline='') as file:
                     writer = csv.writer(file)
                     writer.writerow(
                         (
