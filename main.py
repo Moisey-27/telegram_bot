@@ -2,7 +2,7 @@ from aiogram import Bot, Dispatcher, types
 import joblib
 
 
-TOKEN_API = "7059449160:AAHVxRTEd7HuCAjajZ6j9nGloxvvmdb_rFM"
+TOKEN_API = "your_token"
 
 bot = Bot(TOKEN_API)
 dp = Dispatcher()
