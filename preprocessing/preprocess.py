@@ -3,8 +3,14 @@ import re
 import nltk
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
+import os
 
-df = pd.read_csv('C:/Users/79185/Desktop/test_task/datasets/csv_all_in_one/all.csv')
+
+basedir = os.path.abspath(os.getcwd())
+workbooks_dir = os.path.abspath(os.path.join(basedir, '../../datasets/csv_all_in_one/'))
+
+
+df = pd.read_csv(os.path.abspath(os.path.join(workbooks_dir, 'all.csv')))
 df.columns = ['category', 'article_name', 'article_link', 'article_text']
 df.sample(frac=1.0)
 
@@ -28,6 +34,6 @@ def clean_text(text):
 
 df['article_text'] = df['article_text'].apply(clean_text)
 
-df.to_csv('C:/Users/79185/Desktop/test_task/datasets/csv_all_in_one/all_stemmer.csv', index=False)
+df.to_csv(os.path.abspath(os.path.join(workbooks_dir, 'all_stemmer.csv')), index=False)
 
 print(df['article_text'][15])
