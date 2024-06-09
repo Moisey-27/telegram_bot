@@ -9,8 +9,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+import os
 
-df = pd.read_csv('C:/Users/79185/Desktop/test_task/datasets/csv_all_in_one/all_stemmer.csv').sample(frac=1)
+
+basedir = os.path.abspath(os.getcwd())
+workbooks_dir = os.path.abspath(os.path.join(basedir, '../../datasets/csv_all_in_one/all_stemmer.csv'))
+df = pd.read_csv(workbooks_dir).sample(frac=1)
+
 df.columns = ['category', 'article_name', 'article_link', 'article_text']
 print(df.head())
 
